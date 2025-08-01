@@ -42,6 +42,7 @@
         <div class="container">
             <div class="box">
                 <div class="section-title">📦 How to Use</div>
+                <p><b>Form submit with default behavior - (Page Refresh After Form submit)</b></p>
                 <p>1. Include the library at the end of your HTML:</p>
                 <pre><code class="language-markup">&lt;script src="formValidator.js"&gt;&lt;/script&gt;</code></pre>
 
@@ -67,6 +68,46 @@ window.addEventListener("load", () =&gt; {
 &lt;/script&gt;
 </code></pre>
             </div>
+        </div>
+    </section>
+    <section data-scroll>
+        <div class="container">
+            <div class="box">
+                <div class="section-title">⚡ AJAX Submission (No Page Reload)</div>
+                <p><b>Use this if you want to handle form submission via AJAX without refreshing the page.</b></p>
+
+                <p>1. Include the library at the end of your HTML:</p>
+                <pre><code class="language-markup">&lt;script src="formValidator.js"&gt;&lt;/script&gt;</code></pre>
+
+                <br>
+                <p>2. Add validation classes to your form fields:</p>
+                <ul>
+                    <li><code>required_field</code> – for all required inputs</li>
+                    <li><code>email</code> – for email validation</li>
+                    <li><code>phone</code> – for phone number validation</li>
+                    <li><code>password</code> and <code>confirmp</code> – for matching passwords</li>
+                    <li>
+                        <code>check-radio-wrap</code> – Parent <code>&lt;div&gt;</code> of checkbox/radio groups
+                        <br><strong class="mt-2 d-block">✔ Must also include <code>required_field</code> on the same
+                            <code>&lt;div&gt;</code></strong>
+                    </li>
+                </ul>
+
+                <br>
+                <p>3. Initialize the validator with <code>onSuccess</code> callback for AJAX:</p>
+                <pre><code class="language-markup">&lt;script&gt;
+if (document.querySelector("#tbo_promotion_form_rec")) {
+  new FormValidator("#tbo_promotion_form_rec", {
+    onSuccess: function () {
+        console.log("Form Submitted");
+        //Your Ajax Code here 👇
+    },
+  });
+}
+&lt;/script&gt;
+</code></pre>
+            </div>
+
         </div>
     </section>
     <section data-scroll>

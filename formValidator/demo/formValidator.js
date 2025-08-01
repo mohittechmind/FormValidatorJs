@@ -26,9 +26,11 @@ console.log(
 );
 
 class FormValidator {
-  constructor(formSelector) {
+  constructor(formSelector, options = {}) {
     this.form = document.querySelector(formSelector);
     this.fields = this.form.querySelectorAll(".required_field");
+    this.onSuccess = options.onSuccess || null;
+
     this.form.addEventListener("submit", this.validateForm.bind(this));
   }
 
@@ -44,7 +46,6 @@ class FormValidator {
   }
 
   validateForm(event) {
-    debugger;
     this.clearErrors();
     let isValid = true;
 
@@ -108,6 +109,11 @@ class FormValidator {
       }
     });
 
-    if (!isValid) event.preventDefault();
+    if (!isValid) {
+      event.preventDefault();
+    } else if (this.onSuccess && typeof this.onSuccess === "function") {
+      event.preventDefault(); // prevent default submit
+      this.onSuccess(new FormData(this.form)); // pass form data
+    }
   }
 }
