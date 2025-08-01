@@ -2,7 +2,6 @@
 
 body {
   font-family: "Fira Code", monospace;
-  padding-bottom: 120px;
 
   &::-webkit-scrollbar {
     display: none;
@@ -103,5 +102,4 @@ footer {
   background: #343a40;
   color: white;
   text-align: center;
-  margin-top: 40px;
 }
