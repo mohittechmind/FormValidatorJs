@@ -27,7 +27,11 @@ console.log(
 
 class FormValidator {
   constructor(formSelector, options = {}) {
-    this.form = document.querySelector(formSelector);
+    // this.form = document.querySelector(formSelector);
+    this.form =
+      formSelector instanceof HTMLElement
+        ? formSelector
+        : document.querySelector(formSelector);
     this.fields = this.form.querySelectorAll(".required_field");
     this.onSuccess = options.onSuccess || null;
 

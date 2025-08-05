@@ -73,7 +73,7 @@ window.addEventListener("load", () =&gt; {
     <section data-scroll>
         <div class="container">
             <div class="box">
-                <div class="section-title">⚡ AJAX Submission (No Page Reload)</div>
+                <div class="section-title">⚡ AJAX Submission (No Page Reload) Single Form</div>
                 <p><b>Use this if you want to handle form submission via AJAX without refreshing the page.</b></p>
 
                 <p>1. Include the library at the end of your HTML:</p>
@@ -105,6 +105,69 @@ if (document.querySelector("#tbo_promotion_form_rec")) {
   });
 }
 &lt;/script&gt;
+</code></pre>
+            </div>
+
+        </div>
+    </section>
+    <section data-scroll>
+        <div class="container">
+            <div class="box">
+                <div class="section-title">⚡ AJAX Submission (No Page Reload) – Multiple Forms</div>
+                <p><b>Use this setup to handle multiple forms (with the same class) via AJAX without page
+                        reload.</b></p>
+
+                <p>1. Include the library at the end of your HTML:</p>
+                <pre><code class="language-markup">&lt;script src="formValidator.js"&gt;&lt;/script&gt;</code></pre>
+
+                <br>
+                <p>2. Add validation classes to your form fields:</p>
+                <ul>
+                    <li><code>required_field</code> – for all required inputs</li>
+                    <li><code>email</code> – for email validation</li>
+                    <li><code>phone</code> – for phone number validation</li>
+                    <li><code>password</code> and <code>confirmp</code> – for matching passwords</li>
+                    <li>
+                        <code>check-radio-wrap</code> – Parent <code>&lt;div&gt;</code> of checkbox/radio
+                        groups
+                        <br><strong class="mt-2 d-block">✔ Must also include <code>required_field</code> on
+                            the same
+                            <code>&lt;div&gt;</code></strong>
+                    </li>
+                </ul>
+
+                <br>
+                <p>🧪 3. HTML Form Setup</p>
+                <p>Make sure each form has the class tbo_promotion_form For example:</p>
+                <pre><code class="language-markup">&lt;form class="tbo_promotion_form">
+    &lt;input type="text" name="name" class="required_field" />
+    &lt;input type="email" name="email" class="required_field email" />
+    &lt;button type="submit" class="vr_submit_promotion">Submit&lt;/button>
+&lt;/form>
+
+&lt;form class="tbo_promotion_form">
+    &lt;input type="text" name="name" class="required_field" />
+    &lt;input type="email" name="email" class="required_field email" />
+    &lt;button type="submit" class="vr_submit_promotion">Submit&lt;/button>
+&lt;/form>
+</code></pre>
+
+                <br>
+                <p>🚀 4. JavaScript: Initialize FormValidator for All Forms</p>
+                <p>This script will target every form with the .tbo_promotion_form class and initialize validation +
+                    AJAX submission individually.</p>
+                <pre><code class="language-markup">&lt;script>
+    document.querySelectorAll(".tbo_promotion_form").forEach((formEl) => {
+        if (formEl) {
+            new FormValidator(formEl, {
+                 onSuccess: function () {
+                    console.log("Form Submitted");
+                    //Your Ajax Code here 👇
+                },
+            });
+        }
+    });
+&lt;/script>
 </code></pre>
             </div>
 
